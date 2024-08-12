@@ -1,4 +1,4 @@
-package com.coinkiri.domain
+package com.coinkiri.domain.member
 
 class Member(
     val id: Long? = null,

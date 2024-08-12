@@ -1,4 +1,4 @@
-package com.coinkiri.domain
+package com.coinkiri.domain.member
 
 enum class SocialType(
     val value: String
