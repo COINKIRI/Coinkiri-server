@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/coinkiri-application" />
             <option value="$PROJECT_DIR$/coinkiri-domain" />
+            <option value="$PROJECT_DIR$/coinkiri-framework" />
           </set>
         </option>
       </GradleProjectSettings>
