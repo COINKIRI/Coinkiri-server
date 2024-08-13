@@ -10,4 +10,3 @@ dependencies {
     implementation(project(":coinkiri-domain"))
     implementation(project(":coinkiri-application"))
 }
-

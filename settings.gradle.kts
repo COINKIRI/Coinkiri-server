@@ -1,9 +1,26 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
 }
+
 rootProject.name = "Coinkiri-server"
+
+// domain
 include("coinkiri-domain")
+
+// application
 include("coinkiri-application")
-include("coinkiri-framework")
-include("coinkiri-bootstrap")
-include("persistence")
+
+// infrastructures
+include(":persistence")
+project(":persistence").projectDir = file("./coinkiri-infrastructure/persistence")
+
+// bootstraps
+include(":api")
+project(":api").projectDir = file("./coinkiri-bootstrap/api")
