@@ -10,8 +10,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/coinkiri-application" />
+            <option value="$PROJECT_DIR$/coinkiri-bootstrap" />
             <option value="$PROJECT_DIR$/coinkiri-domain" />
             <option value="$PROJECT_DIR$/coinkiri-framework" />
+            <option value="$PROJECT_DIR$/persistence" />
           </set>
         </option>
       </GradleProjectSettings>
