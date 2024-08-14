@@ -1,5 +1,18 @@
 package com.coinkiri.application.member
 
 import com.coinkiri.application.member.port.`in`.usecase.MemberUseCase
+import com.coinkiri.application.member.port.out.jpa.MemberRepository
+import com.coinkiri.domain.member.Member
+import com.coinkiri.domain.member.MemberCreate
+import org.springframework.stereotype.Service
 
-class MemberService() : MemberUseCase
+@Service
+class MemberService(
+    private val memberRepository: MemberRepository
+) : MemberUseCase {
+
+    override fun create(memberCreate: MemberCreate): Member {
+        val member = Member.from(memberCreate)
+        return memberRepository.save(member)
+    }
+}
