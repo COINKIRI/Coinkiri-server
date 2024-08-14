@@ -1,3 +1,5 @@
 package com.coinkiri.application.member
 
-class MemberService
+import com.coinkiri.application.member.port.`in`.usecase.MemberUseCase
+
+class MemberService() : MemberUseCase
