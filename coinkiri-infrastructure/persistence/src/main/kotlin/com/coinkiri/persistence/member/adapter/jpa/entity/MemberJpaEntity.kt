@@ -1,4 +1,4 @@
-package com.coinkiri.persistence.member.adapter.jpa
+package com.coinkiri.persistence.member.adapter.jpa.entity
 
 import com.coinkiri.domain.member.Member
 import com.coinkiri.domain.member.SocialType
