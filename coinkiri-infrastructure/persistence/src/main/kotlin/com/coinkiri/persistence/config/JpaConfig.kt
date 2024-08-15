@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 @Configuration
 @EnableJpaAuditing
-@EntityScan(basePackages = ["com.coinkiri.persistence"])
-@EnableJpaRepositories(basePackages = ["com.coinkiri.persistence"])
+@EntityScan(basePackages = ["com.coinkiri.persistence.adapter.jpa.entity"])
+@EnableJpaRepositories(basePackages = ["com.coinkiri.persistence.adapter.jpa.repository"])
 class JpaConfig

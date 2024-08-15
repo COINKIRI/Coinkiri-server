@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Import
 @Configuration
 @Import(
     value = [
-        ApplicationConfig::class,
+        ApplicationConfig::class
     ]
 )
 class ApiConfig

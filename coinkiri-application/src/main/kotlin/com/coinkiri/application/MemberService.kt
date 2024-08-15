@@ -1,7 +1,7 @@
-package com.coinkiri.application.member
+package com.coinkiri.application
 
-import com.coinkiri.application.member.port.`in`.usecase.MemberUseCase
-import com.coinkiri.application.member.port.out.jpa.MemberRepository
+import com.coinkiri.application.port.`in`.usecase.MemberUseCase
+import com.coinkiri.application.port.out.jpa.MemberRepository
 import com.coinkiri.domain.member.Member
 import com.coinkiri.domain.member.MemberCreate
 import org.springframework.stereotype.Service

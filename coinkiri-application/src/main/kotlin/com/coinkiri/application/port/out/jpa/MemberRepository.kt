@@ -1,4 +1,4 @@
-package com.coinkiri.application.member.port.out.jpa
+package com.coinkiri.application.port.out.jpa
 
 import com.coinkiri.domain.member.Member
 

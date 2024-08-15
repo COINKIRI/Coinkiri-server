@@ -1,4 +1,4 @@
-package com.coinkiri.application.member.port.`in`.usecase
+package com.coinkiri.application.port.`in`.usecase
 
 import com.coinkiri.domain.member.Member
 import com.coinkiri.domain.member.MemberCreate

@@ -1,4 +1,4 @@
-package com.coinkiri.persistence.member.adapter.jpa.entity
+package com.coinkiri.persistence.adapter.jpa.entity
 
 import com.coinkiri.domain.member.Member
 import com.coinkiri.domain.member.SocialType
@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 
 @Entity
 @Table(name = "members")
-class MemberJpaEntity(
+data class MemberJpaEntity(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

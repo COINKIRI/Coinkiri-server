@@ -2,7 +2,7 @@ package com.coinkiri.api.adapter.controller
 
 import com.coinkiri.api.adapter.request.MemberCreateRequest
 import com.coinkiri.api.adapter.response.MemberResponse
-import com.coinkiri.application.member.port.`in`.usecase.MemberUseCase
+import com.coinkiri.application.port.`in`.usecase.MemberUseCase
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -21,5 +21,4 @@ class MemberController(
         val member = memberUseCase.create(request.to())
         return MemberResponse.from(member)
     }
-
 }
