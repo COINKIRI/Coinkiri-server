@@ -10,5 +10,8 @@ dependencies {
     
     implementation(project(":coinkiri-domain"))
 
-    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+
+    // swagger
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
 }
