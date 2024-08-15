@@ -7,11 +7,9 @@ bootJar.enabled = false
 jar.enabled = true
 
 dependencies {
-    
+
     implementation(project(":coinkiri-domain"))
 
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter")
 
-    // swagger
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
 }
