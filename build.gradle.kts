@@ -39,5 +39,7 @@ subprojects {
     dependencies {
         // Test
         testImplementation("org.springframework.boot:spring-boot-starter-test")
+        
+        implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.23")
     }
 }
