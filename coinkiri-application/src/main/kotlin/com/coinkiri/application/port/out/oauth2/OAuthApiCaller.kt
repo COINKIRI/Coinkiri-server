@@ -1,6 +1,6 @@
 package com.coinkiri.application.port.out.oauth2
 
-interface KakaoApiCaller {
+interface OAuthApiCaller {
 
     fun getProfile()
 }
