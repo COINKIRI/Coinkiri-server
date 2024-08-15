@@ -4,5 +4,5 @@ import com.coinkiri.domain.member.Member
 
 interface MemberRepository {
 
-    fun save(member: Member) : Member
+    fun save(member: Member): Member
 }

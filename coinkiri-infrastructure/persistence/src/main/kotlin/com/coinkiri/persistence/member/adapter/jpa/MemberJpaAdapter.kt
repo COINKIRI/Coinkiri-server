@@ -5,7 +5,7 @@ import com.coinkiri.domain.member.Member
 import com.coinkiri.persistence.member.adapter.jpa.entity.MemberJpaEntity
 import com.coinkiri.persistence.member.adapter.jpa.repository.MemberJpaRepository
 
-class MemberJpaAdapter (
+class MemberJpaAdapter(
     private val memberJpaRepository: MemberJpaRepository
 ) : MemberRepository {
 
