@@ -1,6 +1,6 @@
 package com.coinkiri.domain.member
 
-class MemberCreate(
+data class MemberCreate(
     val socialId: String,
     val socialType: SocialType,
     val nickname: String

@@ -1,20 +1,13 @@
-package com.coinkiri.persistence.member.adapter.jpa.entity
+package com.coinkiri.persistence.adapter.jpa.entity
 
 import com.coinkiri.domain.member.Member
 import com.coinkiri.domain.member.SocialType
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.EnumType
-import jakarta.persistence.Enumerated
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import java.time.LocalDateTime
 
 @Entity
 @Table(name = "members")
-class MemberJpaEntity (
+data class MemberJpaEntity(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,9 +29,9 @@ class MemberJpaEntity (
     @Column(nullable = false)
     val updatedAt: LocalDateTime
 
-){
+) {
     companion object {
-        fun from(member: Member) : MemberJpaEntity {
+        fun from(member: Member): MemberJpaEntity {
             return MemberJpaEntity(
                 id = member.id,
                 socialId = member.socialId,
@@ -50,7 +43,7 @@ class MemberJpaEntity (
         }
     }
 
-    fun toDomain() : Member {
+    fun toDomain(): Member {
         return Member(
             id = id,
             socialId = socialId,

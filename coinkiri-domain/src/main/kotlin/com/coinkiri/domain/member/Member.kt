@@ -2,7 +2,7 @@ package com.coinkiri.domain.member
 
 import java.time.LocalDateTime
 
-class Member(
+data class Member(
     val id: Long? = null,
     val socialId: String,
     val socialType: SocialType,
