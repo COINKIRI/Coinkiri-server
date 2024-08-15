@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/coinkiri-application" />
             <option value="$PROJECT_DIR$/coinkiri-bootstrap/api" />
             <option value="$PROJECT_DIR$/coinkiri-domain" />
+            <option value="$PROJECT_DIR$/coinkiri-infrastructure/oauth2" />
             <option value="$PROJECT_DIR$/coinkiri-infrastructure/persistence" />
           </set>
         </option>

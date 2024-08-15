@@ -7,9 +7,7 @@ bootJar.enabled = false
 jar.enabled = true
 
 dependencies {
-
     implementation(project(":coinkiri-domain"))
-
-    api("org.springframework.boot:spring-boot-starter")
-
+    implementation(project(":coinkiri-application"))
+    
 }
