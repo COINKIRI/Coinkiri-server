@@ -9,7 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient
 class KakaoApiCallerAdapter(
     private val webClient: WebClient
 ) : KakaoApiCaller {
-
+    
     override fun getProfile(accessToken: String): KakaoProfileResponse {
         return webClient.get()
             .uri("https://kapi.kakao.com/v2/user/me")

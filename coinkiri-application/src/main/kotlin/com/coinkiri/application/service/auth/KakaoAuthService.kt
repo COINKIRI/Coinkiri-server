@@ -1,5 +1,6 @@
 package com.coinkiri.application.service.auth
 
+import com.coinkiri.application.port.`in`.command.SignUpCommand
 import com.coinkiri.application.port.`in`.usecase.AuthUseCase
 import com.coinkiri.application.port.out.oauth2.KakaoApiCaller
 import com.coinkiri.application.service.member.MemberService
@@ -11,8 +12,8 @@ class KakaoAuthService(
     private val memberService: MemberService
 ) : AuthUseCase {
 
-    override fun signUp(accessToken: String) {
-        val kakaoProfile = kakaoApiCaller.getProfile(accessToken)
+    override fun signUp(signUpCommand: SignUpCommand) {
+        val kakaoProfile = kakaoApiCaller.getProfile(signUpCommand.token)
         // TODO member save
     }
 }
