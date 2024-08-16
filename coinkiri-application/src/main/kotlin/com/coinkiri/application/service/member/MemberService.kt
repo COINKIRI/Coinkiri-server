@@ -1,4 +1,4 @@
-package com.coinkiri.application
+package com.coinkiri.application.service.member
 
 import com.coinkiri.application.port.`in`.usecase.MemberUseCase
 import com.coinkiri.application.port.out.jpa.MemberRepository

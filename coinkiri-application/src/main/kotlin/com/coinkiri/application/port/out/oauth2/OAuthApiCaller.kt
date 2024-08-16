@@ -1,6 +1,6 @@
 package com.coinkiri.application.port.out.oauth2
 
-import com.coinkiri.application.KakaoProfileResponse
+import com.coinkiri.application.service.auth.dto.KakaoProfileResponse
 
 interface OAuthApiCaller {
 

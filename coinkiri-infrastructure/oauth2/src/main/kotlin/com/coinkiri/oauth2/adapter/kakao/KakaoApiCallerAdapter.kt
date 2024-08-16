@@ -1,7 +1,7 @@
 package com.coinkiri.oauth2.adapter.kakao
 
-import com.coinkiri.application.KakaoProfileResponse
 import com.coinkiri.application.port.out.oauth2.OAuthApiCaller
+import com.coinkiri.application.service.auth.dto.KakaoProfileResponse
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
 
