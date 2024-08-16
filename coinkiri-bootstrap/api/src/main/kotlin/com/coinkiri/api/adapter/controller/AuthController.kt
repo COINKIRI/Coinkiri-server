@@ -16,7 +16,7 @@ class AuthController(
     private val authUseCase: AuthUseCase
 ) {
 
-    @Operation(summary = "소셜 회원가입")
+    @Operation(summary = "소셜 로그인")
     @PostMapping("/signUp")
     fun signUp(
         @RequestBody request: SignUpRequest
