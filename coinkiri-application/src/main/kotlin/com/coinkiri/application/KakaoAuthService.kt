@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class KakaoAuthService(
-    private val oAuthApiCaller: OAuthApiCaller
+    private val oAuthApiCaller: OAuthApiCaller,
+    private val memberService: MemberService
 ) : AuthUseCase {
 
     override fun signUp() {
