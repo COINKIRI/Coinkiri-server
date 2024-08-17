@@ -17,6 +17,15 @@ class ReissueTokenService(
     override fun invoke(command: ReissueToken.Command): TokenDto {
         val memberId = jwtHandler.getMemberIdByToken(command.accessToken)
         val member = findMember.findMemberById(memberId)
-
+        if (!jwtHandler.validateToken(command.refreshToken)) {
+            throw IllegalArgumentException(
+                "주어진 리프레시 토큰 ${command.refreshToken} 이 유효하지 않습니다."
+            )
+        }
+        val refreshToken = redisHandler.get("refresh_token:$memberId")
+            ?: throw IllegalArgumentException(
+                "이미 만료된 리프레시 토큰 ${command.refreshToken} 입니다."
+            )
+        
     }
 }

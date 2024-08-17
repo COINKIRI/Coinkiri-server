@@ -7,4 +7,6 @@ interface JwtHandler {
     fun createToken(memberId: Long?): TokenDto
 
     fun getMemberIdByToken(accessToken: String): Long
+
+    fun validateToken(token: String?): Boolean
 }

@@ -57,25 +57,7 @@ class JwtHandlerAdapter(
         return TokenDto(accessToken, refreshToken)
     }
 
-    override fun getMemberIdByToken(accessToken: String): Long {
-        val memberId = parseClaims(accessToken)[JwtKey.MEMBER_ID] as Int?
-        return memberId?.toLong() ?: throw IllegalArgumentException(
-            "주어진 액세스 토큰 $accessToken 으로 멤버 정보를 찾을 수 없습니다."
-        )
-    }
-
-    private fun parseClaims(accessToken: String): Claims {
-        return try {
-            Jwts.parserBuilder()
-                .setSigningKey(secretKey)
-                .build()
-                .parseClaimsJws(accessToken).body
-        } catch (e: ExpiredJwtException) {
-            e.claims
-        }
-    }
-
-    fun validateToken(token: String?): Boolean {
+    override fun validateToken(token: String?): Boolean {
         try {
             Jwts.parserBuilder()
                 .setSigningKey(secretKey)
@@ -99,4 +81,24 @@ class JwtHandlerAdapter(
         }
         return false
     }
+
+    override fun getMemberIdByToken(accessToken: String): Long {
+        val memberId = parseClaims(accessToken)[JwtKey.MEMBER_ID] as Int?
+        return memberId?.toLong() ?: throw IllegalArgumentException(
+            "주어진 액세스 토큰 $accessToken 으로 멤버 정보를 찾을 수 없습니다."
+        )
+    }
+
+    private fun parseClaims(accessToken: String): Claims {
+        return try {
+            Jwts.parserBuilder()
+                .setSigningKey(secretKey)
+                .build()
+                .parseClaimsJws(accessToken).body
+        } catch (e: ExpiredJwtException) {
+            e.claims
+        }
+    }
+
+
 }
