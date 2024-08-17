@@ -2,7 +2,7 @@ package com.coinkiri.application.port.`in`.usecase
 
 import com.coinkiri.application.port.out.dto.TokenDto
 
-interface CreateToken {
+fun interface CreateToken {
 
     fun invoke(command: Command): TokenDto
 
