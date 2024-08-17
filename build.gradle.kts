@@ -39,7 +39,11 @@ subprojects {
     dependencies {
         // Test
         testImplementation("org.springframework.boot:spring-boot-starter-test")
-        
+
+        // Reflection
         implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.23")
+
+        // Logging
+        implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
     }
 }
