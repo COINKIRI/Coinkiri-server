@@ -13,7 +13,13 @@ class KakaoLoginService(
 
     override fun invoke(command: SocialLogin.Command): SocialLogin.Result {
         val kakaoProfile = kakaoApiCaller.getProfile(command.token)
-        
+        val createMemberCommand = CreateMember.Command(
+            socialId = kakaoProfile.socialId,
+            socialType = command.socialType,
+            nickname = command.nickname
+        )
+        val member = createMember.invoke(createMemberCommand)
+
         return SocialLogin.Result.Success(
             accessToken = "accessToken",
             refreshToken = "refreshToken"
