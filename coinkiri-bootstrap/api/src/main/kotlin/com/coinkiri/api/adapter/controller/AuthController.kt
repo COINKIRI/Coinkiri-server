@@ -31,7 +31,7 @@ class AuthController(
             nickname = request.nickname,
         )
         val socialLoginService = socialLoginProvider.getAuthService(socialLoginCommand.socialType)
-
+        
         return when (
             val result: SocialLogin.Result = socialLoginService.invoke(socialLoginCommand)
         ) {

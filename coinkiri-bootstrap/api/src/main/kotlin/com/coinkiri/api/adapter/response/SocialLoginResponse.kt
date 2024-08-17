@@ -7,5 +7,4 @@ sealed class SocialLoginResponse {
         val accessToken: String,
         val refreshToken: String,
     ) : SocialLoginResponse()
-    
 }
