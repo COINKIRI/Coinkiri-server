@@ -24,8 +24,10 @@ project(":persistence").projectDir = file("./coinkiri-infrastructure/persistence
 include(":oauth2")
 project(":oauth2").projectDir = file("./coinkiri-infrastructure/oauth2")
 
+include(":redis")
+project(":redis").projectDir = file("./coinkiri-infrastructure/redis")
+
 // bootstraps
 include(":api")
 project(":api").projectDir = file("./coinkiri-bootstrap/api")
-
-
+include("redis")
