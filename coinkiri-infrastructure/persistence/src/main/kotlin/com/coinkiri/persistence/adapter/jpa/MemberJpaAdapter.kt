@@ -14,4 +14,8 @@ class MemberJpaAdapter(
     override fun save(member: Member): Member {
         return memberJpaRepository.save(MemberJpaEntity.from(member)).toDomain()
     }
+
+    override fun findBySocialIdAndSocialType(socialId: String, socialType: String): Member? {
+        return memberJpaRepository.findBySocialIdAndSocialType(socialId, socialType)?.toDomain()
+    }
 }

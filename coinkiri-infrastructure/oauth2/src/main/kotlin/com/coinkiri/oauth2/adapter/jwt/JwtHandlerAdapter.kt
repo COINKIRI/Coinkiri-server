@@ -2,6 +2,9 @@ package com.coinkiri.oauth2.adapter.jwt
 
 import com.coinkiri.application.port.out.dto.TokenDto
 import com.coinkiri.application.port.out.oauth2.JwtHandler
+import com.coinkiri.application.port.out.redis.RedisHandler
+import com.coinkiri.oauth2.constant.JwtKey
+import com.coinkiri.oauth2.constant.RedisKey
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.io.Decoders
@@ -13,7 +16,9 @@ import java.security.Key
 import java.util.*
 
 @Component
-class JwtHandlerAdapter : JwtHandler {
+class JwtHandlerAdapter(
+    private val redisHandler: RedisHandler
+) : JwtHandler {
     @Value("\${jwt.secret}")
     private var jwtSecret: String? = null
     private var secretKey: Key? = null
@@ -36,7 +41,7 @@ class JwtHandlerAdapter : JwtHandler {
         val refreshTokenExpiresIn = Date(now + REFRESH_TOKEN_EXPIRE_TIME)
 
         val accessToken: String = Jwts.builder()
-            .claim("MEMBER_ID", memberId)
+            .claim(JwtKey.MEMBER_ID, memberId)
             .setExpiration(accessTokenExpiresIn)
             .signWith(secretKey, SignatureAlgorithm.HS512)
             .compact()
@@ -45,6 +50,8 @@ class JwtHandlerAdapter : JwtHandler {
             .setExpiration(refreshTokenExpiresIn)
             .signWith(secretKey, SignatureAlgorithm.HS512)
             .compact()
+
+        redisHandler.set(RedisKey.REFRESH_TOKEN + memberId, refreshToken, REFRESH_TOKEN_EXPIRE_TIME)
 
         return TokenDto(accessToken, refreshToken)
     }

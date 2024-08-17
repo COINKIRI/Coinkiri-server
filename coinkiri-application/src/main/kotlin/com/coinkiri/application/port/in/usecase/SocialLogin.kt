@@ -17,5 +17,7 @@ fun interface SocialLogin {
             val accessToken: String,
             val refreshToken: String
         ) : Result()
+
+        // TODO data class Failure() : Result()
     }
 }
