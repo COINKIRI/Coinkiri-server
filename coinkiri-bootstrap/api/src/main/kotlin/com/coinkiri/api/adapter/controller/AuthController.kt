@@ -42,8 +42,6 @@ class AuthController(
                 )
                 ResponseEntity.ok(body)
             }
-
-            // TODO is SocialLogin.Result.Failure -> {}
         }
     }
 }

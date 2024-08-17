@@ -13,7 +13,9 @@ import java.security.Key
 import java.util.*
 
 @Component
-class JwtHandlerAdapter : JwtHandler {
+class JwtHandlerAdapter(
+//    private val redisHandler: RedisHandler
+) : JwtHandler {
     @Value("\${jwt.secret}")
     private var jwtSecret: String? = null
     private var secretKey: Key? = null
@@ -45,6 +47,8 @@ class JwtHandlerAdapter : JwtHandler {
             .setExpiration(refreshTokenExpiresIn)
             .signWith(secretKey, SignatureAlgorithm.HS512)
             .compact()
+
+        // redisHandler.set(RedisKey.REFRESH_TOKEN + memberId, refreshToken, REFRESH_TOKEN_EXPIRE_TIME)
 
         return TokenDto(accessToken, refreshToken)
     }
