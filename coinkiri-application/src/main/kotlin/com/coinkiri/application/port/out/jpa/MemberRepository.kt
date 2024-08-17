@@ -6,5 +6,7 @@ interface MemberRepository {
 
     fun save(member: Member): Member
 
+    fun findById(id: Long): Member
+
     fun findBySocialIdAndSocialType(socialId: String, socialType: String): Member?
 }
