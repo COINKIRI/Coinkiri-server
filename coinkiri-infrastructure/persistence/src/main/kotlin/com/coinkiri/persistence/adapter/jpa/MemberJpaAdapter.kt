@@ -15,6 +15,11 @@ class MemberJpaAdapter(
         return memberJpaRepository.save(MemberJpaEntity.from(member)).toDomain()
     }
 
+    override fun findById(id: Long): Member {
+        return memberJpaRepository.findById(id)
+            .orElseThrow { throw IllegalArgumentException("해당 id의 멤버를 찾을 수 없습니다: $id") }.toDomain()
+    }
+
     override fun findBySocialIdAndSocialType(socialId: String, socialType: String): Member? {
         return memberJpaRepository.findBySocialIdAndSocialType(socialId, socialType)?.toDomain()
     }

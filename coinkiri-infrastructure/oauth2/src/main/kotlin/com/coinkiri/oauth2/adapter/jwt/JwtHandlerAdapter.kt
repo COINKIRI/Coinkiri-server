@@ -1,13 +1,14 @@
 package com.coinkiri.oauth2.adapter.jwt
 
+import com.coinkiri.application.config.log.Slf4JKotlinLogging.log
 import com.coinkiri.application.port.out.dto.TokenDto
 import com.coinkiri.application.port.out.oauth2.JwtHandler
 import com.coinkiri.application.port.out.redis.RedisHandler
 import com.coinkiri.oauth2.constant.JwtKey
 import com.coinkiri.oauth2.constant.RedisKey
-import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.SignatureAlgorithm
+import io.jsonwebtoken.*
 import io.jsonwebtoken.io.Decoders
+import io.jsonwebtoken.io.DecodingException
 import io.jsonwebtoken.security.Keys
 import jakarta.annotation.PostConstruct
 import org.springframework.beans.factory.annotation.Value
@@ -55,4 +56,53 @@ class JwtHandlerAdapter(
 
         return TokenDto(accessToken, refreshToken)
     }
+
+    override fun validateToken(token: String?): Boolean {
+        try {
+            Jwts.parserBuilder()
+                .setSigningKey(secretKey)
+                .build()
+                .parseClaimsJws(token)
+            return true
+        } catch (e: SecurityException) {
+            log.warn(e) { "Invalid JWT Token" }
+        } catch (e: MalformedJwtException) {
+            log.warn(e) { "Invalid JWT Token" }
+        } catch (e: DecodingException) {
+            log.warn(e) { "Invalid JWT Token" }
+        } catch (e: ExpiredJwtException) {
+            log.warn(e) { "Expired JWT Token" }
+        } catch (e: UnsupportedJwtException) {
+            log.warn(e) { "Unsupported JWT Token" }
+        } catch (e: IllegalArgumentException) {
+            log.warn(e) { "JWT claims string is empty." }
+        } catch (e: Exception) {
+            log.error(e) { "Unhandled JWT exception" }
+        }
+        return false
+    }
+
+    override fun expireRefreshToken(memberId: Long) {
+        redisHandler.delete(RedisKey.REFRESH_TOKEN + memberId)
+    }
+
+    override fun getMemberIdByToken(accessToken: String): Long {
+        val memberId = parseClaims(accessToken)[JwtKey.MEMBER_ID] as Int?
+        return memberId?.toLong() ?: throw IllegalArgumentException(
+            "주어진 액세스 토큰 $accessToken 으로 멤버 정보를 찾을 수 없습니다."
+        )
+    }
+
+    private fun parseClaims(accessToken: String): Claims {
+        return try {
+            Jwts.parserBuilder()
+                .setSigningKey(secretKey)
+                .build()
+                .parseClaimsJws(accessToken).body
+        } catch (e: ExpiredJwtException) {
+            e.claims
+        }
+    }
+
+
 }

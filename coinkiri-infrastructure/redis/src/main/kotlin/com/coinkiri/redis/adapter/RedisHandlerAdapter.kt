@@ -13,4 +13,12 @@ class RedisHandlerAdapter(
     override fun set(key: String, value: Any, timeout: Long) {
         redisTemplate.opsForValue().set(key, value, timeout, TimeUnit.MILLISECONDS)
     }
+
+    override fun get(key: String): String? {
+        return redisTemplate.opsForValue().get(key) as String?
+    }
+
+    override fun delete(key: String) {
+        redisTemplate.delete(key)
+    }
 }
