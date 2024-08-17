@@ -2,7 +2,6 @@ package com.coinkiri.application.service.token
 
 import com.coinkiri.application.port.`in`.usecase.FindMember
 import com.coinkiri.application.port.`in`.usecase.ReissueToken
-import com.coinkiri.application.port.out.dto.TokenDto
 import com.coinkiri.application.port.out.oauth2.JwtHandler
 import com.coinkiri.application.port.out.redis.RedisHandler
 import org.springframework.stereotype.Service
@@ -14,24 +13,29 @@ class ReissueTokenService(
     private val redisHandler: RedisHandler
 ) : ReissueToken {
 
-    override fun invoke(command: ReissueToken.Command): TokenDto {
+    override fun invoke(command: ReissueToken.Command): ReissueToken.Result {
         val memberId = jwtHandler.getMemberIdByToken(command.accessToken)
         val member = findMember.findMemberById(memberId)
         if (!jwtHandler.validateToken(command.refreshToken)) {
-            throw IllegalArgumentException(
-                "주어진 리프레시 토큰 ${command.refreshToken} 이 유효하지 않습니다."
+            return ReissueToken.Result.Failure(
+                message = "유효하지 않은 리프레시 토큰입니다: ${command.refreshToken}"
             )
         }
         val refreshToken = redisHandler.get("refresh_token:$memberId")
-            ?: throw IllegalArgumentException(
-                "이미 만료된 리프레시 토큰 ${command.refreshToken} 입니다."
+            ?: return ReissueToken.Result.Failure(
+                message = "만료된 리프레시 토큰입니다: ${command.refreshToken}"
             )
         if (refreshToken != command.refreshToken) {
             jwtHandler.expireRefreshToken(member.id!!)
-            throw IllegalArgumentException(
-                "해당 리프레시 토큰 ${command.refreshToken} 의 정보가 일치하지 않습니다."
+            return ReissueToken.Result.Failure(
+                message = "리프레시 토큰의 정보가 일치하지 않습니다: ${command.refreshToken}"
             )
         }
-        return jwtHandler.createToken(memberId)
+        val newToken = jwtHandler.createToken(memberId)
+
+        return ReissueToken.Result.Success(
+            accessToken = newToken.accessToken,
+            refreshToken = newToken.refreshToken
+        )
     }
 }
