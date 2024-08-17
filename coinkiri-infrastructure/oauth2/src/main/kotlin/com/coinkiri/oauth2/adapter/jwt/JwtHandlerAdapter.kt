@@ -82,6 +82,10 @@ class JwtHandlerAdapter(
         return false
     }
 
+    override fun expireRefreshToken(memberId: Long) {
+        redisHandler.delete(RedisKey.REFRESH_TOKEN + memberId)
+    }
+
     override fun getMemberIdByToken(accessToken: String): Long {
         val memberId = parseClaims(accessToken)[JwtKey.MEMBER_ID] as Int?
         return memberId?.toLong() ?: throw IllegalArgumentException(

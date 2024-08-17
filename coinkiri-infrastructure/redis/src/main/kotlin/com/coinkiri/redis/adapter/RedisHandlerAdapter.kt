@@ -17,4 +17,8 @@ class RedisHandlerAdapter(
     override fun get(key: String): String? {
         return redisTemplate.opsForValue().get(key) as String?
     }
+
+    override fun delete(key: String) {
+        redisTemplate.delete(key)
+    }
 }

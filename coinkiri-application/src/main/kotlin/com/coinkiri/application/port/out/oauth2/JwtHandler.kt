@@ -9,4 +9,6 @@ interface JwtHandler {
     fun getMemberIdByToken(accessToken: String): Long
 
     fun validateToken(token: String?): Boolean
+
+    fun expireRefreshToken(memberId: Long)
 }

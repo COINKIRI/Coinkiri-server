@@ -26,6 +26,12 @@ class ReissueTokenService(
             ?: throw IllegalArgumentException(
                 "이미 만료된 리프레시 토큰 ${command.refreshToken} 입니다."
             )
-        
+        if (refreshToken != command.refreshToken) {
+            jwtHandler.expireRefreshToken(member.id!!)
+            throw IllegalArgumentException(
+                "해당 리프레시 토큰 ${command.refreshToken} 의 정보가 일치하지 않습니다."
+            )
+        }
+        return jwtHandler.createToken(memberId)
     }
 }
