@@ -1,4 +1,4 @@
-package com.coinkiri.application.service.auth
+package com.coinkiri.application.service.auth.strategy
 
 import com.coinkiri.application.port.`in`.usecase.CreateMember
 import com.coinkiri.application.port.`in`.usecase.SocialLogin
