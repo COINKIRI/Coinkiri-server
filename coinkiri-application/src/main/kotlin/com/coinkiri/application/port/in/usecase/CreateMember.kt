@@ -1,9 +1,14 @@
 package com.coinkiri.application.port.`in`.usecase
 
-import com.coinkiri.domain.member.Member
-import com.coinkiri.domain.member.MemberCreate
+import com.coinkiri.domain.member.SocialType
 
-interface CreateMember {
+fun interface CreateMember {
 
-    fun create(memberCreate: MemberCreate): Member
+    fun invoke(command: Command)
+
+    data class Command(
+        val socialId: String,
+        val socialType: SocialType,
+        val nickname: String
+    )
 }

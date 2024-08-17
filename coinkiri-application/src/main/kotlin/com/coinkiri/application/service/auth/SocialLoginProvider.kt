@@ -6,7 +6,7 @@ import jakarta.annotation.PostConstruct
 import org.springframework.stereotype.Component
 
 @Component
-class AuthServiceProvider(
+class SocialLoginProvider(
     private val kakaoLoginService: KakaoLoginService
 ) {
     companion object {

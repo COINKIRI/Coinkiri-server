@@ -1,9 +1,21 @@
 package com.coinkiri.application.port.`in`.usecase
 
-import com.coinkiri.application.port.`in`.command.SignUpCommand
-import com.coinkiri.domain.member.Member
+import com.coinkiri.domain.member.SocialType
 
-interface SocialLogin {
+fun interface SocialLogin {
 
-    fun socialLogin(signUpCommand: SignUpCommand): Member
+    fun invoke(command: Command): Result
+
+    data class Command(
+        val token: String,
+        val socialType: SocialType,
+        val nickname: String
+    )
+
+    sealed class Result {
+        data class Success(
+            val accessToken: String,
+            val refreshToken: String
+        ) : Result()
+    }
 }
