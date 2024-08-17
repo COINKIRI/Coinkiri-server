@@ -24,6 +24,6 @@ class AuthController(
     ) {
         val socialType = SocialType.valueOf(request.socialType)
         val authService = authServiceProvider.getAuthService(socialType)
-        val member = authService.signUp(request.to())
+        val member = authService.socialLogin(request.to())
     }
 }

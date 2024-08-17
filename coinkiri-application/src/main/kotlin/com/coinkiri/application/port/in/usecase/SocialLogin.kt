@@ -3,7 +3,7 @@ package com.coinkiri.application.port.`in`.usecase
 import com.coinkiri.application.port.`in`.command.SignUpCommand
 import com.coinkiri.domain.member.Member
 
-interface AuthUseCase {
+interface SocialLogin {
 
-    fun signUp(signUpCommand: SignUpCommand): Member
+    fun socialLogin(signUpCommand: SignUpCommand): Member
 }
