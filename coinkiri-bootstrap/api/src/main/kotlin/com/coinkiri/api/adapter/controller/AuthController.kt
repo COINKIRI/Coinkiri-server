@@ -4,8 +4,11 @@ import com.coinkiri.api.adapter.request.SocialLoginRequest
 import com.coinkiri.api.adapter.request.TokenRequest
 import com.coinkiri.api.adapter.response.SocialLoginResponse
 import com.coinkiri.api.adapter.response.TokenResponse
+import com.coinkiri.application.config.interceptor.Auth
+import com.coinkiri.application.config.resolver.MemberId
 import com.coinkiri.application.port.`in`.usecase.ReissueToken
 import com.coinkiri.application.port.`in`.usecase.SocialLogin
+import com.coinkiri.application.port.`in`.usecase.SocialLogout
 import com.coinkiri.application.service.auth.SocialLoginProvider
 import com.coinkiri.domain.member.SocialType
 import io.swagger.v3.oas.annotations.Operation
@@ -22,7 +25,8 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("api/v1/auth")
 class AuthController(
     private val socialLoginProvider: SocialLoginProvider,
-    private val reissueToken: ReissueToken
+    private val reissueToken: ReissueToken,
+    private val socialLogout: SocialLogout
 ) {
 
     @Operation(summary = "소셜 회원가입/로그인")
@@ -82,7 +86,23 @@ class AuthController(
         }
     }
 
-//    @Operation(summary = "로그아웃")
-//    @PostMapping("/logout")
+    @Operation(summary = "소셜 로그아웃")
+    @PostMapping("/logout")
+    @Auth
+    fun socialLogout(
+        @MemberId memberId: Long
+    ): ResponseEntity<String> {
+        val socialLogoutCommand = SocialLogout.Command(
+            memberId = memberId
+        )
 
+        return when (
+            val result: SocialLogout.Result = socialLogout.invoke(socialLogoutCommand)
+        ) {
+            is SocialLogout.Result.Success -> {
+                val message = result.message
+                ResponseEntity.ok(message)
+            }
+        }
+    }
 }
