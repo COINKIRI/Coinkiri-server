@@ -15,10 +15,7 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @Tag(name = "Member")
 @RestController
@@ -90,6 +87,26 @@ class AuthController(
     @PostMapping("/logout")
     @Auth
     fun socialLogout(
+        @MemberId memberId: Long
+    ): ResponseEntity<String> {
+        val socialLogoutCommand = SocialLogout.Command(
+            memberId = memberId
+        )
+
+        return when (
+            val result: SocialLogout.Result = socialLogout.invoke(socialLogoutCommand)
+        ) {
+            is SocialLogout.Result.Success -> {
+                val message = result.message
+                ResponseEntity.ok(message)
+            }
+        }
+    }
+
+    @Operation(summary = "회원 탈퇴")
+    @DeleteMapping("/delete")
+    @Auth
+    fun deleteMember(
         @MemberId memberId: Long
     ): ResponseEntity<String> {
         val socialLogoutCommand = SocialLogout.Command(
