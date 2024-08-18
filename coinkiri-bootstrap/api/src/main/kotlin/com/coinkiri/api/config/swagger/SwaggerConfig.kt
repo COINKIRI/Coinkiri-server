@@ -35,7 +35,7 @@ class SwaggerConfig {
             .security(listOf(securityRequirement))
             .info(info)
     }
-    
+
     init {
         SpringDocUtils.getConfig().addAnnotationsToIgnore(MemberId::class.java)
     }

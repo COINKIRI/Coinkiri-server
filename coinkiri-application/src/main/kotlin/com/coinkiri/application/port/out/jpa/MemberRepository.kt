@@ -9,4 +9,6 @@ interface MemberRepository {
     fun findById(id: Long): Member
 
     fun findBySocialIdAndSocialType(socialId: String, socialType: String): Member?
+
+    fun delete(member: Member)
 }

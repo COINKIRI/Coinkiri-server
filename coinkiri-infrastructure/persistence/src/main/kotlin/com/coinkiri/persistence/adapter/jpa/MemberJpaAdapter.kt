@@ -23,4 +23,8 @@ class MemberJpaAdapter(
     override fun findBySocialIdAndSocialType(socialId: String, socialType: String): Member? {
         return memberJpaRepository.findBySocialIdAndSocialType(socialId, socialType)?.toDomain()
     }
+
+    override fun delete(member: Member) {
+        memberJpaRepository.delete(MemberJpaEntity.from(member))
+    }
 }
