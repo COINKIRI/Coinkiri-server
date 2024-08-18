@@ -4,6 +4,7 @@ import com.coinkiri.application.port.`in`.usecase.FindMember
 import com.coinkiri.application.port.`in`.usecase.ReissueToken
 import com.coinkiri.application.port.out.oauth2.JwtHandler
 import com.coinkiri.application.port.out.redis.RedisHandler
+import com.coinkiri.application.port.out.redis.RedisKey
 import org.springframework.stereotype.Service
 
 @Service
@@ -21,7 +22,7 @@ class ReissueTokenService(
                 message = "유효하지 않은 리프레시 토큰입니다: ${command.refreshToken}"
             )
         }
-        val refreshToken = redisHandler.get("refresh_token:$memberId")
+        val refreshToken = redisHandler.get(RedisKey.REFRESH_TOKEN + memberId)
             ?: return ReissueToken.Result.Failure(
                 message = "만료된 리프레시 토큰입니다: ${command.refreshToken}"
             )

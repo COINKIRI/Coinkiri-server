@@ -11,5 +11,7 @@ dependencies {
     implementation(project(":coinkiri-domain"))
 
     api("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
 
+    api("jakarta.servlet:jakarta.servlet-api:6.0.0")
 }
