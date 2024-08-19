@@ -29,10 +29,13 @@ class AuthController(
     @Operation(summary = "소셜 회원가입/로그인")
     @PostMapping("/login")
     fun socialLogin(
+        @RequestHeader("Authorization") authorizationHeader: String,
         @RequestBody request: SocialLoginRequest
     ): ResponseEntity<SocialLoginResponse> {
+        val token = authorizationHeader.removePrefix("Bearer ").trim()
+
         val socialLoginCommand = SocialLogin.Command(
-            token = request.token,
+            token = token,
             socialType = SocialType.valueOf(request.socialType),
             nickname = request.nickname,
         )
@@ -103,7 +106,7 @@ class AuthController(
         }
     }
 
-    @Operation(summary = "회원 탈퇴")
+    @Operation(summary = "회원 탈퇴(삭제)")
     @DeleteMapping("/delete")
     @Auth
     fun deleteMember(
