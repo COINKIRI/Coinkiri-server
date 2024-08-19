@@ -9,7 +9,6 @@ fun interface SocialLogin {
     data class Command(
         val token: String,
         val socialType: SocialType,
-        val nickname: String
     )
 
     sealed class Result {

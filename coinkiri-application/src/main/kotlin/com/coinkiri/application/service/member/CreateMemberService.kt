@@ -17,7 +17,6 @@ class CreateMemberService(
                 MemberCreate(
                     socialId = command.socialId,
                     socialType = command.socialType,
-                    nickname = command.nickname
                 )
             )
         )

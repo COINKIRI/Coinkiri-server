@@ -10,6 +10,5 @@ fun interface CreateMember {
     data class Command(
         val socialId: String,
         val socialType: SocialType,
-        val nickname: String
     )
 }

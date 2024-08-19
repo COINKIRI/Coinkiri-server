@@ -27,7 +27,6 @@ class KakaoLoginService(
                 val createMemberCommand = CreateMember.Command(
                     socialId = kakaoProfile.socialId,
                     socialType = command.socialType,
-                    nickname = command.nickname
                 )
                 createMember.invoke(createMemberCommand)
             }
