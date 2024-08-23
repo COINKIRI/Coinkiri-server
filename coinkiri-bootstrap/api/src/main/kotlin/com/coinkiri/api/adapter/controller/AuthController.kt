@@ -36,7 +36,7 @@ class AuthController(
 
         val socialLoginCommand = SocialLogin.Command(
             token = token,
-            socialType = SocialType.valueOf(request.socialType),
+            socialType = SocialType.valueOf(request.platform),
         )
         val socialLoginService = socialLoginProvider.getAuthService(socialLoginCommand.socialType)
 
