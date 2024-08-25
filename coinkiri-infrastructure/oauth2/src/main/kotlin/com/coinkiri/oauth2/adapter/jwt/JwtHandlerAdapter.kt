@@ -1,11 +1,11 @@
 package com.coinkiri.oauth2.adapter.jwt
 
-import com.coinkiri.application.config.log.Slf4JKotlinLogging.log
 import com.coinkiri.application.port.out.dto.TokenDto
 import com.coinkiri.application.port.out.oauth2.JwtHandler
 import com.coinkiri.application.port.out.oauth2.JwtKey
 import com.coinkiri.application.port.out.redis.RedisHandler
 import com.coinkiri.application.port.out.redis.RedisKey
+import com.coinkiri.common.log.Slf4JKotlinLogging.log
 import io.jsonwebtoken.*
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.io.DecodingException
