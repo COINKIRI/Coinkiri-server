@@ -19,13 +19,13 @@ class KakaoLoginService(
         val kakaoProfile = kakaoApiCaller.getProfile(command.token)
 
         val checkRegisteredCommand = CheckRegistered.Command(
-            socialId = kakaoProfile.socialId,
+            socialId = kakaoProfile.id,
             socialType = command.socialType
         )
         val member = checkRegistered.invoke(checkRegisteredCommand)
             ?: run {
                 val createMemberCommand = CreateMember.Command(
-                    socialId = kakaoProfile.socialId,
+                    socialId = kakaoProfile.id,
                     socialType = command.socialType,
                 )
                 createMember.invoke(createMemberCommand)

@@ -1,5 +1,7 @@
 package com.coinkiri.application.port.out.dto
 
-data class SocialProfileDto(
-    val socialId: String
+import com.fasterxml.jackson.annotation.JsonCreator
+
+data class SocialProfileDto @JsonCreator constructor(
+    val id: String
 )

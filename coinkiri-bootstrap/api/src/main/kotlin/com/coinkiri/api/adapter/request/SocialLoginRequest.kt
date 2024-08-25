@@ -1,5 +1,7 @@
 package com.coinkiri.api.adapter.request
 
-data class SocialLoginRequest(
+import com.fasterxml.jackson.annotation.JsonCreator
+
+data class SocialLoginRequest @JsonCreator constructor(
     val platform: String
 )

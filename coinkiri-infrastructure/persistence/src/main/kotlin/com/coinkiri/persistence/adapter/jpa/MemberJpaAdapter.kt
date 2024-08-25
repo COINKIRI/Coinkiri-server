@@ -2,6 +2,7 @@ package com.coinkiri.persistence.adapter.jpa
 
 import com.coinkiri.application.port.out.jpa.MemberRepository
 import com.coinkiri.domain.member.Member
+import com.coinkiri.domain.member.SocialType
 import com.coinkiri.persistence.adapter.jpa.entity.MemberJpaEntity
 import com.coinkiri.persistence.adapter.jpa.repository.MemberJpaRepository
 import org.springframework.stereotype.Repository
@@ -20,7 +21,7 @@ class MemberJpaAdapter(
             .orElseThrow { throw IllegalArgumentException("해당 id의 멤버를 찾을 수 없습니다: $id") }.toDomain()
     }
 
-    override fun findBySocialIdAndSocialType(socialId: String, socialType: String): Member? {
+    override fun findBySocialIdAndSocialType(socialId: String, socialType: SocialType): Member? {
         return memberJpaRepository.findBySocialIdAndSocialType(socialId, socialType)?.toDomain()
     }
 

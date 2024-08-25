@@ -1,6 +1,7 @@
 package com.coinkiri.application.port.out.jpa
 
 import com.coinkiri.domain.member.Member
+import com.coinkiri.domain.member.SocialType
 
 interface MemberRepository {
 
@@ -8,7 +9,7 @@ interface MemberRepository {
 
     fun findById(id: Long): Member
 
-    fun findBySocialIdAndSocialType(socialId: String, socialType: String): Member?
+    fun findBySocialIdAndSocialType(socialId: String, socialType: SocialType): Member?
 
     fun delete(member: Member)
 }

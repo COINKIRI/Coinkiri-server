@@ -11,6 +11,6 @@ class CheckRegisteredService(
 ) : CheckRegistered {
 
     override fun invoke(command: CheckRegistered.Command): Member? {
-        return memberRepository.findBySocialIdAndSocialType(command.socialId, command.socialType.toString())
+        return memberRepository.findBySocialIdAndSocialType(command.socialId, command.socialType)
     }
 }
