@@ -12,11 +12,10 @@ fun interface SocialLogin {
     )
 
     sealed class Result {
+        
         data class Success(
             val accessToken: String,
             val refreshToken: String
         ) : Result()
-
-        // TODO data class Failure() : Result()
     }
 }

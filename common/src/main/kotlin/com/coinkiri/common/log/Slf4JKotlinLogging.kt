@@ -1,4 +1,4 @@
-package com.coinkiri.application.config.log
+package com.coinkiri.common.log
 
 import io.github.oshai.kotlinlogging.KLogger
 import io.github.oshai.kotlinlogging.KotlinLogging
