@@ -10,6 +10,7 @@ import com.coinkiri.application.port.`in`.usecase.ReissueToken
 import com.coinkiri.application.port.`in`.usecase.SocialLogin
 import com.coinkiri.application.port.`in`.usecase.SocialLogout
 import com.coinkiri.application.service.auth.SocialLoginProvider
+import com.coinkiri.common.response.ApiResponse
 import com.coinkiri.domain.member.SocialType
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -31,7 +32,7 @@ class AuthController(
     fun socialLogin(
         @RequestHeader("Authorization") authorizationHeader: String,
         @RequestBody request: SocialLoginRequest
-    ): ResponseEntity<SocialLoginResponse> {
+    ): ResponseEntity<ApiResponse<SocialLoginResponse>> {
         val token = authorizationHeader.removePrefix("Bearer ").trim()
 
         val socialLoginCommand = SocialLogin.Command(
@@ -44,9 +45,11 @@ class AuthController(
             val result: SocialLogin.Result = socialLoginService.invoke(socialLoginCommand)
         ) {
             is SocialLogin.Result.Success -> {
-                val body = SocialLoginResponse.Success(
-                    accessToken = result.accessToken,
-                    refreshToken = result.refreshToken,
+                val body = ApiResponse.success(
+                    SocialLoginResponse(
+                        accessToken = result.accessToken,
+                        refreshToken = result.refreshToken,
+                    )
                 )
                 ResponseEntity.ok(body)
             }
