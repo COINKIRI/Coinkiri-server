@@ -9,6 +9,7 @@ jar.enabled = true
 dependencies {
 
     implementation(project(":coinkiri-domain"))
+    implementation(project(":common"))
 
     api("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
