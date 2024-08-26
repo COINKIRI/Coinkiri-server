@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/coinkiri-infrastructure/oauth2" />
             <option value="$PROJECT_DIR$/coinkiri-infrastructure/persistence" />
             <option value="$PROJECT_DIR$/coinkiri-infrastructure/redis" />
+            <option value="$PROJECT_DIR$/coinkiri-infrastructure/upbit" />
             <option value="$PROJECT_DIR$/common" />
           </set>
         </option>

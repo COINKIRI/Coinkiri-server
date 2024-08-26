@@ -17,6 +17,9 @@ include("coinkiri-domain")
 // application
 include("coinkiri-application")
 
+// common
+include("common")
+
 // infrastructures
 include(":persistence")
 project(":persistence").projectDir = file("./coinkiri-infrastructure/persistence")
@@ -27,8 +30,9 @@ project(":oauth2").projectDir = file("./coinkiri-infrastructure/oauth2")
 include(":redis")
 project(":redis").projectDir = file("./coinkiri-infrastructure/redis")
 
+include(":upbit")
+project(":upbit").projectDir = file("./coinkiri-infrastructure/upbit")
+
 // bootstraps
 include(":api")
 project(":api").projectDir = file("./coinkiri-bootstrap/api")
-include("redis")
-include("common")
