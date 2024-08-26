@@ -5,6 +5,7 @@ dependencies {
     implementation(project(":persistence"))
     implementation(project(":oauth2"))
     implementation(project(":redis"))
+    implementation(project(":upbit"))
 
     implementation("org.springframework.boot:spring-boot-starter-web")
 
