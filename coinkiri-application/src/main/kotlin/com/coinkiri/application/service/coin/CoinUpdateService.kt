@@ -9,8 +9,5 @@ class CoinUpdateService(
     private val coinRepository: CoinRepository,
     private val upbitApiCaller: UpbitApiCaller
 ) {
-
-    fun save() {
-
-    }
+    
 }
