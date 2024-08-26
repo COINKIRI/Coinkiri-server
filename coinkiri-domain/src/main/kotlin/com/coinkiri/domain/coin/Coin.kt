@@ -6,7 +6,7 @@ data class Coin(
     val marketName: String,
     val koreanName: String,
     val englishName: String,
-    val symbol: ByteArray,
+    val symbol: ByteArray? = null,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime
 ) {
@@ -16,7 +16,6 @@ data class Coin(
                 marketName = coinCreate.marketName,
                 koreanName = coinCreate.koreanName,
                 englishName = coinCreate.englishName,
-                symbol = coinCreate.symbol,
                 createdAt = LocalDateTime.now(),
                 updatedAt = LocalDateTime.now()
             )

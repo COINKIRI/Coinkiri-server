@@ -19,8 +19,7 @@ data class CoinJpaEntity(
 
     @Column(nullable = false)
     val englishName: String,
-
-    @Column(nullable = false)
+    
     val symbol: ByteArray,
 
     @Column(nullable = false)
