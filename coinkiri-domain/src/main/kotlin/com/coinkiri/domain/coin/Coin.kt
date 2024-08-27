@@ -7,8 +7,7 @@ data class Coin(
     val koreanName: String,
     val englishName: String,
     val symbol: ByteArray? = null,
-    val createdAt: LocalDateTime,
-    val updatedAt: LocalDateTime
+    val createdAt: LocalDateTime
 ) {
     companion object {
         fun fromList(coinCreateList: List<CoinCreate>): List<Coin> {
@@ -21,7 +20,6 @@ data class Coin(
                 koreanName = coinCreate.koreanName,
                 englishName = coinCreate.englishName,
                 createdAt = LocalDateTime.now(),
-                updatedAt = LocalDateTime.now()
             )
     }
 }

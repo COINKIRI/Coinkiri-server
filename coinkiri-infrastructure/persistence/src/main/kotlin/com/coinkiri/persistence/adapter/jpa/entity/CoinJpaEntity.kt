@@ -25,9 +25,7 @@ data class CoinJpaEntity(
     @Column(nullable = false)
     val createdAt: LocalDateTime,
 
-    @Column(nullable = false)
-    val updatedAt: LocalDateTime
-) {
+    ) {
     companion object {
         fun fromList(coinList: List<Coin>): List<CoinJpaEntity> {
             return coinList.map { from(it) }
@@ -39,7 +37,6 @@ data class CoinJpaEntity(
                 koreanName = coin.koreanName,
                 englishName = coin.englishName,
                 createdAt = coin.createdAt,
-                updatedAt = coin.updatedAt
             )
         }
     }
@@ -50,8 +47,7 @@ data class CoinJpaEntity(
             koreanName = koreanName,
             englishName = englishName,
             symbol = symbol,
-            createdAt = createdAt,
-            updatedAt = updatedAt
+            createdAt = createdAt
         )
     }
 }
