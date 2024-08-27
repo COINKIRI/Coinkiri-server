@@ -1,4 +1,4 @@
-package com.coinkiri.oauth2.config
+package com.coinkiri.application.config.web
 
 import io.netty.channel.ChannelOption
 import io.netty.handler.timeout.ReadTimeoutHandler

@@ -20,8 +20,7 @@ data class CoinJpaEntity(
     @Column(nullable = false)
     val englishName: String,
 
-    @Column(nullable = false)
-    val symbol: ByteArray,
+    val symbol: ByteArray = byteArrayOf(),
 
     @Column(nullable = false)
     val createdAt: LocalDateTime,
@@ -30,12 +29,15 @@ data class CoinJpaEntity(
     val updatedAt: LocalDateTime
 ) {
     companion object {
-        fun from(coin: Coin): CoinJpaEntity {
+        fun fromList(coinList: List<Coin>): List<CoinJpaEntity> {
+            return coinList.map { from(it) }
+        }
+
+        private fun from(coin: Coin): CoinJpaEntity {
             return CoinJpaEntity(
                 marketName = coin.marketName,
                 koreanName = coin.koreanName,
                 englishName = coin.englishName,
-                symbol = coin.symbol,
                 createdAt = coin.createdAt,
                 updatedAt = coin.updatedAt
             )

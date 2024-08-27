@@ -6,20 +6,22 @@ data class Coin(
     val marketName: String,
     val koreanName: String,
     val englishName: String,
-    val symbol: ByteArray,
+    val symbol: ByteArray? = null,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime
 ) {
     companion object {
-        fun from(coinCreate: CoinCreate): Coin {
-            return Coin(
+        fun fromList(coinCreateList: List<CoinCreate>): List<Coin> {
+            return coinCreateList.map { from(it) }
+        }
+
+        private fun from(coinCreate: CoinCreate) =
+            Coin(
                 marketName = coinCreate.marketName,
                 koreanName = coinCreate.koreanName,
                 englishName = coinCreate.englishName,
-                symbol = coinCreate.symbol,
                 createdAt = LocalDateTime.now(),
                 updatedAt = LocalDateTime.now()
             )
-        }
     }
 }

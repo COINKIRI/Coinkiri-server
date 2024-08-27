@@ -5,9 +5,8 @@ dependencies {
     implementation(project(":persistence"))
     implementation(project(":oauth2"))
     implementation(project(":redis"))
-
-    implementation("org.springframework.boot:spring-boot-starter-web")
-
+    implementation(project(":upbit"))
+    
     // swagger
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
 
