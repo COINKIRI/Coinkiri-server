@@ -19,8 +19,8 @@ data class CoinJpaEntity(
 
     @Column(nullable = false)
     val englishName: String,
-    
-    val symbol: ByteArray,
+
+    val symbol: ByteArray = byteArrayOf(),
 
     @Column(nullable = false)
     val createdAt: LocalDateTime,
@@ -34,7 +34,6 @@ data class CoinJpaEntity(
                 marketName = coin.marketName,
                 koreanName = coin.koreanName,
                 englishName = coin.englishName,
-                symbol = coin.symbol,
                 createdAt = coin.createdAt,
                 updatedAt = coin.updatedAt
             )
