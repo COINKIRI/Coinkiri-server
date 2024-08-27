@@ -2,6 +2,7 @@ package com.coinkiri.application.service.coin.scheduler
 
 import com.coinkiri.application.port.out.jpa.CoinRepository
 import com.coinkiri.application.port.out.upbit.UpbitApiCaller
+import com.coinkiri.domain.coin.Coin
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.stereotype.Service
@@ -19,7 +20,11 @@ class CoinFetchScheduler(
         val scheduler = Executors.newSingleThreadScheduledExecutor();
 
         scheduler.scheduleAtFixedRate({
+
             val coinCreateList = upbitApiCaller.getCoinList()
+            val coinList = Coin.fromList(coinCreateList)
+            coinRepository.saveAll(coinList)
+
         }, 2, 3600 * 60, TimeUnit.SECONDS) // 2초 후부터 하루에 한 번 실행
     }
 }

@@ -29,7 +29,11 @@ data class CoinJpaEntity(
     val updatedAt: LocalDateTime
 ) {
     companion object {
-        fun from(coin: Coin): CoinJpaEntity {
+        fun fromList(coinList: List<Coin>): List<CoinJpaEntity> {
+            return coinList.map { from(it) }
+        }
+
+        private fun from(coin: Coin): CoinJpaEntity {
             return CoinJpaEntity(
                 marketName = coin.marketName,
                 koreanName = coin.koreanName,

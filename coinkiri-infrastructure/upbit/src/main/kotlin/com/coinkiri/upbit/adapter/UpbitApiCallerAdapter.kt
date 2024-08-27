@@ -21,10 +21,15 @@ class UpbitApiCallerAdapter(
 
             log.info { "Response: ${response.joinToString(separator = ", ") { it.toString() }}" }
 
-            return response.map { it.to() }
+            val krwCoinCreateList = response.filter { it.market.startsWith("KRW-") }
+                .map { CoinCreate(it.market, it.korean_name, it.english_name) }
+
+            return krwCoinCreateList
 
         } catch (e: Exception) {
             log.error(e) { "Error fetching coin list" }
         }
+
+        return emptyList()
     }
 }
