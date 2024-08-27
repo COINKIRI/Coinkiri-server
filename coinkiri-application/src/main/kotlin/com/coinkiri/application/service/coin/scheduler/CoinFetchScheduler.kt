@@ -18,13 +18,11 @@ class CoinFetchScheduler(
     override fun run(args: ApplicationArguments?) {
 
         val scheduler = Executors.newSingleThreadScheduledExecutor();
-
         scheduler.scheduleAtFixedRate({
 
             val coinCreateList = upbitApiCaller.getCoinList()
             val coinList = Coin.fromList(coinCreateList)
             coinRepository.saveAll(coinList)
-
         }, 2, 3600 * 60, TimeUnit.SECONDS) // 2초 후부터 하루에 한 번 실행
     }
 }

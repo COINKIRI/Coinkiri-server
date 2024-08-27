@@ -1,10 +1,7 @@
 package com.coinkiri.persistence.adapter.jpa.entity
 
 import com.coinkiri.domain.coin.Coin
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import java.time.LocalDateTime
 
 @Entity
@@ -20,14 +17,14 @@ data class CoinJpaEntity(
     @Column(nullable = false)
     val englishName: String,
 
-    val symbol: ByteArray = byteArrayOf(),
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    val symbol: String,
 
     @Column(nullable = false)
     val createdAt: LocalDateTime,
 
-    @Column(nullable = false)
-    val updatedAt: LocalDateTime
-) {
+    ) {
     companion object {
         fun fromList(coinList: List<Coin>): List<CoinJpaEntity> {
             return coinList.map { from(it) }
@@ -38,8 +35,8 @@ data class CoinJpaEntity(
                 marketName = coin.marketName,
                 koreanName = coin.koreanName,
                 englishName = coin.englishName,
+                symbol = coin.symbol,
                 createdAt = coin.createdAt,
-                updatedAt = coin.updatedAt
             )
         }
     }
@@ -50,8 +47,7 @@ data class CoinJpaEntity(
             koreanName = koreanName,
             englishName = englishName,
             symbol = symbol,
-            createdAt = createdAt,
-            updatedAt = updatedAt
+            createdAt = createdAt
         )
     }
 }
