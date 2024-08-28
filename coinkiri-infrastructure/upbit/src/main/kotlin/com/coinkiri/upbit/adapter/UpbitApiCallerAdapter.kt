@@ -18,6 +18,7 @@ class UpbitApiCallerAdapter(
 
         try {
             val response = restTemplate.getForObject(coinRequestUrl, Array<CoinDto>::class.java)
+                ?: throw RuntimeException("Upbit API 응답이 null입니다.")
 
             val krwCoinCreateList = response.filter { it.market.startsWith("KRW-") }
                 .map { CoinCreate(it.market, it.korean_name, it.english_name) }
@@ -36,6 +37,7 @@ class UpbitApiCallerAdapter(
 
         try {
             val response = restTemplate.getForObject(coinRequestUrl, Array<CoinDetailDto>::class.java)
+                ?: throw RuntimeException("Upbit API 응답이 null입니다.")
 
             log.info { response }
 
