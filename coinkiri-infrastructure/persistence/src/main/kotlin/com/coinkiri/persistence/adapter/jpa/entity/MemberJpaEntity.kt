@@ -23,6 +23,10 @@ data class MemberJpaEntity(
     @Column(nullable = false)
     val nickname: String,
 
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    val pic: String,
+
     @Column(nullable = false)
     val createdAt: LocalDateTime,
 
@@ -37,6 +41,7 @@ data class MemberJpaEntity(
                 socialId = member.socialId,
                 socialType = member.socialType,
                 nickname = member.nickname,
+                pic = member.pic,
                 createdAt = member.createdAt,
                 updatedAt = member.updatedAt
             )
@@ -49,6 +54,7 @@ data class MemberJpaEntity(
             socialId = socialId,
             socialType = socialType,
             nickname = nickname,
+            pic = pic,
             createdAt = createdAt,
             updatedAt = updatedAt
         )

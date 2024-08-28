@@ -38,7 +38,6 @@ data class Coin(
                 println("Error reading or encoding image: ${e.message}")
                 ""
             }
-
         }
     }
 }
