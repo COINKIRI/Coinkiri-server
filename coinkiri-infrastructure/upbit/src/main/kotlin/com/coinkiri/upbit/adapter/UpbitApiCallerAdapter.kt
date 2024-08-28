@@ -5,6 +5,8 @@ import com.coinkiri.application.port.out.dto.CoinDto
 import com.coinkiri.application.port.out.upbit.UpbitApiCaller
 import com.coinkiri.common.log.Slf4JKotlinLogging.log
 import com.coinkiri.domain.coin.CoinCreate
+import com.coinkiri.domain.coin.CoinDetail
+import com.coinkiri.domain.coin.Price
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
 
@@ -32,18 +34,21 @@ class UpbitApiCallerAdapter(
         return emptyList()
     }
 
-    override fun getCoinDetail(market: String) {
-        val coinRequestUrl = "https://api.upbit.com/v1/candles/days?market=KRW-$market&count=200"
+    override fun getCoinDetail(market: String): CoinDetail {
+        val coinRequestUrl = "https://api.upbit.com/v1/candles/days?market=$market&count=200"
 
         try {
             val response = restTemplate.getForObject(coinRequestUrl, Array<CoinDetailDto>::class.java)
                 ?: throw RuntimeException("Upbit API 응답이 null입니다.")
 
-            log.info { response }
-
-
+            return CoinDetail(
+                market = market,
+                prices = response.map { Price(it.candle_date_time_kst, it.trade_price.toLong()) }
+            )
         } catch (e: Exception) {
             log.error(e) { "Error fetching coin detail" }
         }
+        
+        return CoinDetail(market, emptyList())
     }
 }
