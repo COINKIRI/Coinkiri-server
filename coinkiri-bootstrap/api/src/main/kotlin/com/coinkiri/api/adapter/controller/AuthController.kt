@@ -2,10 +2,12 @@ package com.coinkiri.api.adapter.controller
 
 import com.coinkiri.api.adapter.request.SocialLoginRequest
 import com.coinkiri.api.adapter.request.TokenRequest
+import com.coinkiri.api.adapter.response.MemberResponse
 import com.coinkiri.api.adapter.response.SocialLoginResponse
 import com.coinkiri.api.adapter.response.TokenResponse
 import com.coinkiri.application.config.interceptor.Auth
 import com.coinkiri.application.config.resolver.MemberId
+import com.coinkiri.application.port.`in`.usecase.FindMember
 import com.coinkiri.application.port.`in`.usecase.ReissueToken
 import com.coinkiri.application.port.`in`.usecase.SocialLogin
 import com.coinkiri.application.port.`in`.usecase.SocialLogout
@@ -24,7 +26,8 @@ import org.springframework.web.bind.annotation.*
 class AuthController(
     private val socialLoginProvider: SocialLoginProvider,
     private val reissueToken: ReissueToken,
-    private val socialLogout: SocialLogout
+    private val socialLogout: SocialLogout,
+    private val findMember: FindMember
 ) {
 
     @Operation(summary = "소셜 회원가입/로그인")
@@ -126,5 +129,16 @@ class AuthController(
                 ResponseEntity.ok(message)
             }
         }
+    }
+
+    @Operation(summary = "회원 정보 조회")
+    @GetMapping("/info")
+    @Auth
+    fun findMemberInfo(
+        @MemberId memberId: Long
+    ): ResponseEntity<ApiResponse<MemberResponse>> {
+        val member = findMember.findMemberById(memberId)
+
+        return ResponseEntity.ok(ApiResponse.success(MemberResponse.of(member)))
     }
 }
