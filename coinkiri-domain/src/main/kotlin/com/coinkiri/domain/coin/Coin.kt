@@ -18,7 +18,6 @@ data class Coin(
         }
 
         private fun from(coinCreate: CoinCreate): Coin {
-            println("Coin.from() called with coinCreate: $coinCreate")
             return Coin(
                 marketName = coinCreate.marketName,
                 koreanName = coinCreate.koreanName,
@@ -35,8 +34,7 @@ data class Coin(
                 val imageBytes = readAllBytes(imagePath)
                 Base64.getEncoder().encodeToString(imageBytes)
             } catch (e: Exception) {
-                println("Error reading or encoding image: ${e.message}")
-                ""
+                throw RuntimeException("Failed to read default image file", e)
             }
         }
     }
