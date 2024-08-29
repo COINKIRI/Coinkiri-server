@@ -18,4 +18,8 @@ class CoinJpaAdapter(
     override fun findAll(): List<Coin> {
         return coinJpaRepository.findAllByOrderByCreatedAtAsc().map { it.toDomain() }
     }
+
+    override fun save(coin: Coin) {
+        coinJpaRepository.save(CoinJpaEntity.from(coin))
+    }
 }

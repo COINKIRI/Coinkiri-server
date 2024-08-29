@@ -9,7 +9,7 @@ data class Coin(
     val marketName: String,
     val koreanName: String,
     val englishName: String,
-    val symbol: String,
+    var symbol: String, // TODO private set
     val createdAt: LocalDateTime
 ) {
     companion object {
@@ -34,8 +34,21 @@ data class Coin(
                 val imageBytes = readAllBytes(imagePath)
                 Base64.getEncoder().encodeToString(imageBytes)
             } catch (e: Exception) {
-                throw RuntimeException("Failed to read default image file", e)
+                throw RuntimeException("이미지 인코딩에 실패하였습니다", e)
             }
+        }
+    }
+
+    fun updateSymbolImage(marketName: String) {
+        try {
+            val marketNameLower = marketName.substring(4).lowercase()
+            println("marketNameLower: $marketNameLower")
+            val resource = this::class.java.classLoader.getResource("symbol_images_png/$marketNameLower.png")
+            val imagePath = Paths.get(resource.toURI())
+            val imageBytes = readAllBytes(imagePath)
+            this.symbol = Base64.getEncoder().encodeToString(imageBytes)
+        } catch (e: Exception) {
+            throw RuntimeException("이미지 인코딩에 실패하였습니다", e)
         }
     }
 }

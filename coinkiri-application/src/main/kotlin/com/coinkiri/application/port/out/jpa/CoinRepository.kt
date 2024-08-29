@@ -7,4 +7,6 @@ interface CoinRepository {
     fun saveAll(coinList: List<Coin>): List<Coin>
 
     fun findAll(): List<Coin>
+
+    fun save(coin: Coin)
 }

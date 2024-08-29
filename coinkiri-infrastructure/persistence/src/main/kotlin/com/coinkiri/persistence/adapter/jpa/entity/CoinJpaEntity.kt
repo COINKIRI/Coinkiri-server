@@ -30,7 +30,7 @@ data class CoinJpaEntity(
             return coinList.map { from(it) }
         }
 
-        private fun from(coin: Coin): CoinJpaEntity {
+        fun from(coin: Coin): CoinJpaEntity {
             return CoinJpaEntity(
                 marketName = coin.marketName,
                 koreanName = coin.koreanName,
