@@ -34,8 +34,7 @@ data class Coin(
                 val imageBytes = readAllBytes(imagePath)
                 Base64.getEncoder().encodeToString(imageBytes)
             } catch (e: Exception) {
-                println("이미지 인코딩에 실패하였습니다: ${e.message}")
-                ""
+                throw RuntimeException("이미지 인코딩에 실패하였습니다", e)
             }
         }
     }
@@ -49,7 +48,7 @@ data class Coin(
             val imageBytes = readAllBytes(imagePath)
             this.symbol = Base64.getEncoder().encodeToString(imageBytes)
         } catch (e: Exception) {
-            println("이미지 인코딩에 실패하였습니다: ${e.message}")
+            throw RuntimeException("이미지 인코딩에 실패하였습니다", e)
         }
     }
 }
