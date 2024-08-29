@@ -9,7 +9,7 @@ data class Coin(
     val marketName: String,
     val koreanName: String,
     val englishName: String,
-    val symbol: String,
+    var symbol: String,
     val createdAt: LocalDateTime
 ) {
     companion object {
@@ -39,5 +39,9 @@ data class Coin(
                 ""
             }
         }
+    }
+
+    fun updateSymbolImage() {
+        this.symbol = initSymbol()
     }
 }
