@@ -29,5 +29,7 @@
 
 ![ERD](https://github.com/user-attachments/assets/33a0f7e4-941f-4b9e-8817-8931a55857eb)
 
+- Chat은 firebase의 영역입니다. 보기 쉽게 ERD에 같이 포함하여 표현했습니다.
+
 ## 개발 위키
 
