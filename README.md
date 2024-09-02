@@ -33,3 +33,6 @@
 
 ## 개발 위키
 
+다음 링크에서 개발 위키를 확인할 수 있습니다.
+[개발 위키](https://abalone-shake-786.notion.site/fb0dc47690a74b3093834013dd086a6c?v=c1f7d935b9994602abe64d4033a5bde6&pvs=74)
+
