@@ -4,6 +4,7 @@
     * [프로젝트 기능](#프로젝트-기능)
 - [기술 스택](#기술-스택)
 - [헥사고날 아키텍처](#헥사고날-아키텍처)
+- [멀티 모듈 구조](#멀티-모듈-구조)
 - [배포 파이프라인](#배포-파이프라인)
 - [ERD](#erd)
 - [개발 위키](#개발-위키)
@@ -24,6 +25,20 @@
 ## 헥사고날 아키텍처
 
 ![헥사고날 아키텍처](https://github.com/user-attachments/assets/19825ae3-bbda-4a59-abe5-8e8b7040062b)
+
+## 멀티 모듈 구조
+
+![멀티 모듈 구조](https://github.com/user-attachments/assets/8a9c5a46-19fd-4451-b0f1-4e454218dbc2)
+
+- Root (최상위)
+    - Domain
+    - Application
+    - Bootstrap
+    - Infrastructure
+        - Persistence
+        - Redis
+        - Upbit
+        - OAuth2
 
 ## ERD
 
