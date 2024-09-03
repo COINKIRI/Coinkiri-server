@@ -8,4 +8,6 @@ interface UpbitApiCaller {
     fun getCoinList(): List<CoinCreate>
 
     fun getCoinDetail(market: String): CoinDetail
+
+    fun isRiseOrFall(market: String): Boolean
 }

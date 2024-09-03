@@ -48,7 +48,23 @@ class UpbitApiCallerAdapter(
         } catch (e: Exception) {
             log.error(e) { "Error fetching coin detail" }
         }
-        
+
         return CoinDetail(market, emptyList())
+    }
+
+    override fun isRiseOrFall(market: String): Boolean {
+        val coinRequestUrl = "https://api.upbit.com/v1/candles/days?market=$market&count=1"
+
+        try {
+            val response = restTemplate.getForObject(coinRequestUrl, Array<CoinDetailDto>::class.java)
+                ?: throw RuntimeException("Upbit API 응답이 null입니다.")
+            
+            log.info { "Coin detail: ${response.first().change_rate}" }
+            return response.first().change_rate >= 0
+
+        } catch (e: Exception) {
+            log.error(e) { "Error fetching coin detail" }
+            return false
+        }
     }
 }
