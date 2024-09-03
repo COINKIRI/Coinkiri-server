@@ -2,11 +2,13 @@ package com.coinkiri.upbit.adapter
 
 import com.coinkiri.application.port.out.dto.CoinDetailDto
 import com.coinkiri.application.port.out.dto.CoinDto
+import com.coinkiri.application.port.out.dto.TickerDto
 import com.coinkiri.application.port.out.upbit.UpbitApiCaller
 import com.coinkiri.common.log.Slf4JKotlinLogging.log
 import com.coinkiri.domain.coin.CoinCreate
 import com.coinkiri.domain.coin.CoinDetail
 import com.coinkiri.domain.coin.Price
+import com.coinkiri.domain.coin.RiseFallCount
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
 
@@ -52,19 +54,20 @@ class UpbitApiCallerAdapter(
         return CoinDetail(market, emptyList())
     }
 
-    override fun isRiseOrFall(market: String): Boolean {
-        val coinRequestUrl = "https://api.upbit.com/v1/candles/days?market=$market&count=1"
+    override fun getRiseAndFallCount(marketList: List<String>): RiseFallCount {
+        val coinRequestUrl = "https://api.upbit.com/v1/ticker?markets=${marketList.joinToString(",")}"
 
         try {
-            val response = restTemplate.getForObject(coinRequestUrl, Array<CoinDetailDto>::class.java)
+            val response = restTemplate.getForObject(coinRequestUrl, Array<TickerDto>::class.java)
                 ?: throw RuntimeException("Upbit API 응답이 null입니다.")
-            
-            log.info { "Coin detail: ${response.first().change_rate}" }
-            return response.first().change_rate >= 0
 
+            val rateList = response.map { it.signed_change_rate }
+
+            return RiseFallCount.count(rateList)
         } catch (e: Exception) {
-            log.error(e) { "Error fetching coin detail" }
-            return false
+            log.error(e) { "Error fetching rise and fall count" }
         }
+
+        return RiseFallCount(0, 0)
     }
 }

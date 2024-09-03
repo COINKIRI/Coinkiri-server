@@ -16,18 +16,6 @@ class CountRiseFallService(
 
         val marketList = coinRepository.findAll().map { it.marketName }
 
-        var riseCount = 0
-        var fallCount = 0
-
-        marketList.forEach {
-            if (upbitApiCaller.isRiseOrFall(it)) {
-                riseCount++
-            } else {
-                fallCount++
-            }
-            Thread.sleep(100)
-        }
-
-        return RiseFallCount(riseCount, fallCount)
+        return upbitApiCaller.getRiseAndFallCount(marketList)
     }
 }
