@@ -1,5 +1,9 @@
 ## 코인끼리
 
+- demo project : [github](https://github.com/COINKIRI/coinkiri-server-demo)
+<br>
+
+
 ![메인 배너](https://github.com/user-attachments/assets/71ab5a04-3a47-4db0-a728-17722c3db1b9)
 
 - [프로젝트 소개](#프로젝트-소개)
