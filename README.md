@@ -1,8 +1,6 @@
 ## 코인끼리
 
-- demo project : [github](https://github.com/COINKIRI/coinkiri-server-demo)
-<br>
-
+demo project : [github](https://github.com/COINKIRI/coinkiri-server-demo)
 - [프로젝트 소개](#프로젝트-소개)
 - [기술 스택](#기술-스택)
 - [헥사고날 아키텍처](#헥사고날-아키텍처)
@@ -11,7 +9,8 @@
 - [ERD](#erd)
 - [패키지 구조](#패키지-구조)
 - [개발 위키](#개발-위키)
-- [컨벤션과 협업 전략](#컨벤션과-협업-전략)
+
+<br>
 
 ## 프로젝트 소개
 
@@ -32,6 +31,8 @@
 
 ![기능 배너](https://github.com/user-attachments/assets/f06c8d45-99e0-4973-a5c6-d999fdaa931b)
 
+<br>
+
 ## 기술 스택
 
 - Kotlin 1.9.23
@@ -42,9 +43,13 @@
 - Redis 7.2.5
 - Notion, Discord
 
+<br>
+
 ## 헥사고날 아키텍처
 
 ![헥사고날 아키텍처](https://github.com/user-attachments/assets/19825ae3-bbda-4a59-abe5-8e8b7040062b)
+
+<br>
 
 ## 멀티 모듈
 
@@ -60,11 +65,15 @@
         - Upbit
         - OAuth2
 
+<br>
+
 ## ERD
 
 ![ERD](https://github.com/user-attachments/assets/33a0f7e4-941f-4b9e-8817-8931a55857eb)
 
 - Chat은 firebase의 영역입니다. 보기 쉽게 ERD에 같이 포함하여 표현했습니다.
+
+<br>
 
 ## 패키지 구조
 
@@ -157,10 +166,12 @@
 └──
 ```
 
+<br>
+
 ## 개발 위키
 
 다음 링크에서 개발 위키를 확인할 수 있습니다.
 [개발 위키](https://abalone-shake-786.notion.site/fb0dc47690a74b3093834013dd086a6c?v=c1f7d935b9994602abe64d4033a5bde6&pvs=74)
 
-## 컨벤션과 협업 전략
+<br>
 
