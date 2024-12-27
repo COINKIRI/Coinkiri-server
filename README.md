@@ -29,7 +29,6 @@ demo project : [github](https://github.com/COINKIRI/coinkiri-server-demo)
 
 코인이 처음이고 익숙하지 않은 사람들이 기본적인 코인 용어, 개념, 코인 시장의 주요 흐름을 쉽게 이해할 수 있게 설명하는 자료를 제공합니다.
 
-![기능 배너](https://github.com/user-attachments/assets/f06c8d45-99e0-4973-a5c6-d999fdaa931b)
 
 <br>
 
