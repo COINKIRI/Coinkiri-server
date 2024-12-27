@@ -9,6 +9,6 @@ jar.enabled = true
 dependencies {
     implementation(project(":common"))
 
-    implementation(project(":coinkiri-domain"))
-    implementation(project(":coinkiri-application"))
+    implementation(project(":domain"))
+    implementation(project(":application"))
 }

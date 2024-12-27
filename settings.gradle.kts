@@ -12,27 +12,27 @@ plugins {
 rootProject.name = "Coinkiri-server"
 
 // domain
-include("coinkiri-domain")
+include("domain")
 
 // application
-include("coinkiri-application")
+include("application")
 
 // common
 include("common")
 
 // infrastructures
 include(":persistence")
-project(":persistence").projectDir = file("./coinkiri-infrastructure/persistence")
+project(":persistence").projectDir = file("./infrastructure/persistence")
 
 include(":oauth2")
-project(":oauth2").projectDir = file("./coinkiri-infrastructure/oauth2")
+project(":oauth2").projectDir = file("./infrastructure/oauth2")
 
 include(":redis")
-project(":redis").projectDir = file("./coinkiri-infrastructure/redis")
+project(":redis").projectDir = file("./infrastructure/redis")
 
 include(":upbit")
-project(":upbit").projectDir = file("./coinkiri-infrastructure/upbit")
+project(":upbit").projectDir = file("./infrastructure/upbit")
 
 // bootstraps
 include(":api")
-project(":api").projectDir = file("./coinkiri-bootstrap/api")
+project(":api").projectDir = file("./bootstrap/api")
